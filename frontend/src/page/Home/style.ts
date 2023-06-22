@@ -5,7 +5,12 @@ export const HomeContainer=styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 
+  h1{
+    margin-top: 2rem;
+    padding: 2rem;
+  }
 
   form{
     display: flex;
@@ -19,7 +24,7 @@ export const HomeContainer=styled.main`
     height: 10rem;
   }
   input{
-    height: 1.5rem;
+    height: 2rem;
     padding: 0.5rem;
     border-radius: 8px;
   }

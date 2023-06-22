@@ -5,7 +5,7 @@ export function Home(){
   const navigate = useNavigate()
   
   function LoginUser(){
-    navigate("/user")
+    navigate("/admin/list")
   }
 
   return(
