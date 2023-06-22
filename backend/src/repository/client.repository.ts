@@ -1,6 +1,6 @@
 import {Client,IClient,} from "../model/client.model"
 
-class UserRepository{
+class ClientRepository{
   getAll(){
     return Client.find();
   }
@@ -20,3 +20,4 @@ class UserRepository{
     return Client.deleteOne({_id:id})
   }
 }
+export default new ClientRepository();
