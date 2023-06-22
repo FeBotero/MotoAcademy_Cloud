@@ -1,6 +1,8 @@
+import { HomeContainer } from "./style";
+
 export function Home(){
   return(
-    <>
+    <HomeContainer>
       <h1>Disconnected</h1>
       <h3>Seja bem vindo a plataforma de controle de Wifi Corporativo</h3>
       <form action="">
@@ -10,7 +12,7 @@ export function Home(){
       </form>
 
 
-    </>
+    </HomeContainer>
 
   )
 }
