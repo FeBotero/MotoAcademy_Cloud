@@ -9,16 +9,19 @@ export const HomeContainer=styled.main`
 
   form{
     display: flex;
+    justify-content:center;
     flex-direction: column;
     width: 40%;
     background: gray;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 0 32px;
     gap: 0.3rem;
     height: 10rem;
   }
   input{
     height: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
   }
   button{
     padding: 0.5rem;
