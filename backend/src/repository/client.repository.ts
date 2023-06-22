@@ -19,5 +19,4 @@ class UserRepository{
   deleteByID(id:string){
     return Client.deleteOne({_id:id})
   }
-    
 }
