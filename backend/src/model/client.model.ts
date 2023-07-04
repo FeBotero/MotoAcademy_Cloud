@@ -4,6 +4,7 @@ import mongoose, { Schema } from "mongoose";
 export interface IClient{
   email:string;
   status:boolean
+  pass:string;
 }
 export const ClientSchema = new Schema<IClient>(
   {
