@@ -3,12 +3,12 @@ import mongoose, { Schema } from "mongoose";
 
 export interface IClient{
   email:string;
-  password:string
+  status:boolean
 }
 export const ClientSchema = new Schema<IClient>(
   {
     email:{type:String,require:true},
-    password:{type:String}
+    status:{type:Boolean}
   }
 )
 export const Client = mongoose.model<IClient>("Client",ClientSchema)
