@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import { Home } from "./page/Home/Home"
-import { ListUser } from "./page/ListUser/ListUser"
+import { Home } from "./page/Home"
+import { ListUser } from "./page/ListUser"
 import { DefaultLayout } from "./layout/DefaultLayout"
 import { AdminLayout } from "./layout/AdminLayout copy"
 
