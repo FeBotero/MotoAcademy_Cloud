@@ -8,7 +8,7 @@ class ClientService{
   getByID(id:string){
     return ClientRepository.getByID(id);
   }
-  getByEmail(email:string){
+  async getByEmail(email:string){
     return ClientRepository.getByEmail(email)
   }
   async create(body:IClient){

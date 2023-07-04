@@ -3,6 +3,7 @@ import cors from "cors"
 import connection from "./db/dbConnect"
 import userRouter from "./routes/user.route"
 import clientRouter from "./routes/client.route"
+import authRouter from "./routes/auth.route"
 
   const app = express();
   const port = 3000;
@@ -12,6 +13,7 @@ import clientRouter from "./routes/client.route"
 
   app.use("/user",userRouter)
   app.use("/client",clientRouter)
+  app.use("/login",authRouter)
 
   app.get("/",function(req,res){
     res.send("Hello Connected")

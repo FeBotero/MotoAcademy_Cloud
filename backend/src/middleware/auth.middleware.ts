@@ -5,26 +5,21 @@ import userService from "../services/user.service"
 
 dotenv.config()
 
-interface TokenJWT {
-  id:string;
-}
+const secretKey = process.env.SECRET_KEY || "";
 
-export function permissionMiddlewware(permission:string[]){
-  return async(req:Request, res:Response, next:NextFunction)=>{
-    const [schema,token] = req.headers.authorization!.split(" ");
 
-    if(!token){
-      return res.status(401).send({message:"Acesso negado!"})
+export function authMiddleware(req:Request, res:Response, next:NextFunction){
+      const token = req.headers["authorization"];
+    if (!token) {
+      return res.status(401).send({ message: "Acesso negado!" });
     }
-    const decoded = jwt.decode(token) as TokenJWT
+    const tokenSplited = token.split("Bearer ");
+    const decoded = jwt.verify(tokenSplited[1], secretKey);
+  
+    if (!decoded) return res.status(401).send({ message: "Acesso negado!" });
+  
+    next();
+    
 
-    const user = await userService.deleteByID(decoded.id)
-
-    if(!user){
-      return res.status(401).send({message:"Usuário não identificado!"})
-    }else{
-      next()
-    }
-
-  }
+  
 }
