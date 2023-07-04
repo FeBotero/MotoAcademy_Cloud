@@ -11,12 +11,19 @@ router.get("/",async(req:Request,res:Response)=>{
   res.status(200).send(users)
 })
 router.post("/",async(req:Request,res:Response)=>{
-  try{
-    await UserService.create(req.body);
-    res.status(201).send({message:"Usuário cadastrado com sucesso!"})
-  }catch(error:any){
-    res.status(400).send({message:error.message})
+  const user = UserService.getByEmail(req.body.email)
+
+  if(!user){
+    try{
+      await UserService.create(req.body);
+      res.status(201).send({message:"Usuário cadastrado com sucesso!"})
+    }catch(error:any){
+      res.status(400).send({message:error.message})
+    }
+  }else{
+    res.status(400).send({message:"Usuário já cadastrado!"})
   }
+  
 })
 router.put("/:id",async (req:Request,res:Response)=>{
   try{
