@@ -4,7 +4,10 @@ import connection from "./db/dbConnect"
 import userRouter from "./routes/user.route"
 import clientRouter from "./routes/client.route"
 import authRouter from "./routes/auth.route"
+import dotenv from "dotenv";
+dotenv.config();
 
+async function main(){
   const app = express();
   const port = 3000;
 
@@ -31,3 +34,5 @@ import authRouter from "./routes/auth.route"
     .catch((error)=>{
       console.log(error)
     })
+  }
+  main()
