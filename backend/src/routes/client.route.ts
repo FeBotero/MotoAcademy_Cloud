@@ -37,7 +37,7 @@ router.post("/",authMiddleware,async(req:Request,res:Response)=>{
   }catch(error:any){
     res.status(400).send({message:error.message})
   }}else{
-    res.status(400).send({message:"Clinte já cadastrado!"})
+    res.status(400).send({message:"Cliente já cadastrado!"})
   }
 })
 router.put("/:id",async(req:Request,res:Response)=>{
