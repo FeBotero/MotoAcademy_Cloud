@@ -24,7 +24,7 @@ router.post("/check",async(req:Request,res:Response)=>{
   user.pass = "hojeedia"
   const {isActive,pass} = user
   
-  res.status(200).send({isActive,pass})
+  res.status(200).send({"isActive":isActive,"password":pass})
 })
 
 router.post("/",authMiddleware,async(req:Request,res:Response)=>{
