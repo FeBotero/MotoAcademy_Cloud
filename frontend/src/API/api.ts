@@ -1,9 +1,16 @@
 import axios from "axios";
 import { IClient, IUSER } from "../types/Types";
 
+const userInfoString = localStorage.getItem("user");
+const userInfo =
+  userInfoString && userInfoString.trim() !== ""
+    ? JSON.parse(userInfoString)
+    : null;
+const token = userInfo?.token;
 const api = axios.create({
   baseURL:"http://localhost:3000",
   headers:{
+    Authorization: `Bearer ${token}`,
     "Content-Type":"application/json"
   }
 })
@@ -35,26 +42,29 @@ export const apiService ={
   },
   client:{
     readAllURL:function(){
-      return api.get<IClient>("/client")
+      return api.get<IClient>("client")
   },
   readByIdURL:function(id:any){
-      return api.get<IClient>("/client/"+id)
+      return api.get<IClient>("/"+id)
   },
   readByIdUpdateURL:function(id:any){
-      return api.get<IClient>("/client/update/"+id)
+      return api.get<IClient>("/update/"+id)
   },
   createURL:function(body:IClient){
-      return api.post<IClient>("/client",body)
+      return api.post<IClient>("/",body)
   },
   
   updateURL:function(id:any,body:IClient){
       return api.put<any>("/client/"+id,body)
   },
   deleteURL:function(id:any){
-      return api.delete<any>("/client/"+id)
+      return api.delete<any>("/"+id)
   },
-  conectUrl: function (body:IClient) {
-      return api.post("/client/login",body)
+  
+  },
+  auth: {
+    login: function (body: IUSER) {
+      return api.post("/login", body);
     },
   }
 }
