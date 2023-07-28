@@ -1,7 +1,13 @@
 import {Request,Response, Router} from "express"
 import UserService from "../services/user.service"
+import bcrypt from "bcrypt"
+import { IUser } from "model/user.model"
 
 const router = Router()
+interface Irequest{
+  params:string,
+  body:IUser
+}
 
 router.get("/",async(req:Request,res:Response)=>{
   const users = await UserService.getAll()

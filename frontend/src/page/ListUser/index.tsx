@@ -1,54 +1,68 @@
 
+import { useEffect, useState } from "react";
 import { ListContainter } from "./style";
+import { apiService } from "../../API/api";
+import { IClient } from "../../types/Types";
 
 export function ListUser() {
-  const userList = [{
-    "email":"frpbotero@gmail.com",
-    "status":true
-  },
-    {
-      "email":"emeteste12@gmail.com",
-      "status":false
-  
-    }
-  ]
+  const [clientList, setClientList] = useState<IClient[]>([])
 
+  useEffect(() => {
+    apiService.client.readAllURL().then(response => {
+      const data: IClient[] = response.data
+      setClientList(data)
+    })
+  }, [clientList])
 
-  function ChangeMode(status:boolean){
-    if(status==true){
-      status= false;
-    }else{
-      status=true;
+  function active(id: string, status: boolean) {
+    const payload = {
+      isActive: status,
+
     }
+    apiService.client.updateURL(id, payload)
   }
+
+
 
   return (
     <ListContainter>
-      <h1>Lista de Usuários Cadastrados</h1>
+      <div>
+        <h1>Lista de Usuários Cadastrados</h1>
+        <button>Novos Clientes</button>
+      </div>
       <table>
         <thead>
           <tr>
             <th>Email</th>
             <th>Ativado</th>
+            <th>Senha</th>
             <th>Alterar</th>
           </tr>
         </thead>
         <tbody>
           {
-            userList.map(user => (
-              <tr>
-                <td>{user.email}</td>
-                <td><span>{user.status==true?"Active":"Disabled"}</span></td>
-                <td><button onClick={ChangeMode}>Change</button></td>
+            clientList.map(client => (
+              <tr key={client._id}>
+                <td>{client.email}</td>
+                <td><span>{client.isActive == true ? "Active" : "Disabled"}</span></td>
+                <td><span>{client.pass}</span></td>
+                <td>
+                  <button onClick={() => active(client._id, true)}>Ativar</button>
+                  <button onClick={() => active(client._id, false)}>Desativar</button>
+                </td>
               </tr>
             ))
           }
-       
-
-
         </tbody>
       </table>
 
+
+
+
     </ListContainter>
+
+
   )
+
+  
 }

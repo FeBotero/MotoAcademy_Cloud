@@ -4,6 +4,8 @@ export interface IUSER {
 }
 
 export interface IClient{
-  "email":"string";
-  "status":boolean
+  "_id"?:string;
+  "email"?:string;
+  "isActive"?:boolean;
+  "pass"?:string
 }
