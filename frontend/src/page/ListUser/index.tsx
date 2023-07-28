@@ -11,7 +11,6 @@ export function ListUser() {
     apiService.client.readAllURL().then(response => {
       const data: IClient[] = response.data
       setClientList(data)
-      console.log(data)
     })
   }, [clientList])
 
@@ -57,6 +56,13 @@ export function ListUser() {
         </tbody>
       </table>
 
+
+
+
     </ListContainter>
+
+
   )
+
+  
 }

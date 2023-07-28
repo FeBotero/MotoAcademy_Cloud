@@ -8,7 +8,7 @@ const userInfo =
     : null;
 const token = userInfo?.token;
 const api = axios.create({
-  baseURL:"http://localhost:3000",
+  baseURL:"https://motoacademyserver.onrender.com/",
   headers:{
     Authorization: `Bearer ${token}`,
     "Content-Type":"application/json"
