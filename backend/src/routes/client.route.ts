@@ -5,6 +5,18 @@ import clientService from "../services/client.service"
 
 const router = Router()
 
+function makeid(length:number) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 router.get("/",authMiddleware,async(req:Request,res:Response)=>{
   const users = await ClientService.getAll()
   
@@ -21,7 +33,7 @@ router.post("/check",async(req:Request,res:Response)=>{
   }
 //pegar palavra randomica, atualizar no banco e depois enviar para o cliente
   
-  user.pass = "hojeedia"
+  
   const {isActive,pass} = user
   
   res.status(200).send({"isActive":isActive,"password":pass})
@@ -29,9 +41,11 @@ router.post("/check",async(req:Request,res:Response)=>{
 
 router.post("/",authMiddleware,async(req:Request,res:Response)=>{
   const client = clientService.getByEmail(req.body.email)
+  
 
   if(!client){
   try{
+    
     await ClientService.create(req.body);
     res.status(201).send({message:"Cliente cadastrado com sucesso!"})
   }catch(error:any){
@@ -42,6 +56,7 @@ router.post("/",authMiddleware,async(req:Request,res:Response)=>{
 })
 router.put("/:id",async(req:Request,res:Response)=>{
   try{
+    req.body.pass = makeid(5)
     await ClientService.updateByID(req.params.id,req.body);
     res.status(201).send({message:"Cliente atualizado com sucesso!"})
   }catch(error:any){
