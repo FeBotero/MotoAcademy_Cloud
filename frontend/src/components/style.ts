@@ -9,8 +9,16 @@ export const ContainerHeader = styled.div`
   align-items: center;
   padding-inline: 1rem;
 
+  div{
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: x-large;
+    color: white;
+  }
+
   img{
-    width: 10rem;
+    width: 3rem;
   }
   button{
     background: #C0C0C0;

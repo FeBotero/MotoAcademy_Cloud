@@ -15,6 +15,7 @@ export function Header(){
     <ContainerHeader>
       <div>
         <img src={logo} alt="Logo Wifi Disconnected" />
+        Disconnected
       </div>
       <div>
         <button onClick={logout}>Logout</button>
