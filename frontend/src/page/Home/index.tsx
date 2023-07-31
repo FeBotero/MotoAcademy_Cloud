@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ContentBrand, ContentLogin, HomeContainer } from "./style";
 import { apiService } from "../../API/api";
 import { FormEvent, useState } from "react";
+import logo from "../../../public/logo.svg"
 
 export function Home(){
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ export function Home(){
 
      </ContentLogin>
      <ContentBrand>
-        <img src="../../../public/logo.svg" alt="logo_WifiDisconnected" />
+        <img src={logo} alt="logo_WifiDisconnected" />
      </ContentBrand>
 
     </HomeContainer>
