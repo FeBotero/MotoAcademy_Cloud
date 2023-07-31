@@ -6,20 +6,26 @@ import { IClient } from "../../types/Types";
 
 export function ListUser() {
   const [clientList, setClientList] = useState<IClient[]>([])
+  
+   useEffect(() => {
+    refresh(); // Fetch and set the client list on component mount
+  }, []);
 
-  useEffect(() => {
-    apiService.client.readAllURL().then(response => {
-      const data: IClient[] = response.data
-      setClientList(data)
-    })
-  }, [clientList])
+  function refresh() {
+    apiService.client.readAllURL().then((response) => {
+      const data: any = response.data; // Assuming IClient is the correct type
+      setClientList(data);
+    });
+  }
 
-  function active(id: string, status: boolean) {
+  function active(id: string|undefined, status: boolean) {
     const payload = {
       isActive: status,
 
     }
-    apiService.client.updateURL(id, payload)
+    apiService.client.updateURL(id, payload).then(() => {
+      refresh(); // Call refresh after updating the status to get the updated list
+    });
   }
 
 
@@ -44,11 +50,11 @@ export function ListUser() {
             clientList.map(client => (
               <tr key={client._id}>
                 <td>{client.email}</td>
-                <td><span>{client.isActive == true ? "Active" : "Disabled"}</span></td>
+                <td><span>{client.isActive == false ? "Ativo" : "Desativado"}</span></td>
                 <td><span>{client.pass}</span></td>
                 <td>
-                  <button onClick={() => active(client._id, true)}>Ativar</button>
-                  <button onClick={() => active(client._id, false)}>Desativar</button>
+                  <button onClick={() => active(client._id, false)}>Ativar</button>
+                  <button onClick={() => active(client._id, true)}>Desativar</button>
                 </td>
               </tr>
             ))

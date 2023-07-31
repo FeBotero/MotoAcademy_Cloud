@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { HomeContainer } from "./style";
+import { ContentBrand, ContentLogin, HomeContainer } from "./style";
 import { apiService } from "../../API/api";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export function Home(){
   const navigate = useNavigate()
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   
-  function LoginUser(event:Event){
+  function LoginUser(event:FormEvent<HTMLFormElement>){
     event.preventDefault()
     const payload = {
       email:email,
@@ -24,14 +24,21 @@ export function Home(){
 
   return(
     <HomeContainer>
-      <h1>Disconnected</h1>
-      <h3>Seja bem vindo a plataforma de controle de Wifi Corporativo</h3>
+     <ContentLogin>
+     <h1>Controle de Wi-fi</h1>
+      
       <form onSubmit={LoginUser}>
-        <input type="text" id="inputLogin" placeholder="Usuário" onChange={e=>setEmail(e.target.value)}/>
-        <input type="password" id="passLogin" placeholder="Senha"onChange={e=>setPassword(e.target.value)}/>
+        <label htmlFor="inputLogin">E-mail</label>
+        <input type="text" id="inputLogin" placeholder="Digite seu usuário" onChange={e=>setEmail(e.target.value)}/>
+        <label htmlFor="passLogin">Senha</label>
+        <input type="password" id="passLogin" placeholder="Digite sua senha"onChange={e=>setPassword(e.target.value)}/>
         <button type="submit">Entrar</button>
       </form>
 
+     </ContentLogin>
+     <ContentBrand>
+        <img src="/src/assets/logo.png" alt="logo_WifiDisconnected" />
+     </ContentBrand>
 
     </HomeContainer>
 
