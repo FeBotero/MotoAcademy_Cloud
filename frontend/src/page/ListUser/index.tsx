@@ -13,6 +13,7 @@ export function ListUser() {
 
   function refresh() {
     apiService.client.readAllURL().then((response) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const data: any = response.data; // Assuming IClient is the correct type
       setClientList(data);
     });

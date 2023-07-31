@@ -37,7 +37,7 @@ export function Home(){
 
      </ContentLogin>
      <ContentBrand>
-        <img src="/src/assets/logo.png" alt="logo_WifiDisconnected" />
+        <img src="/public/logo.png" alt="logo_WifiDisconnected" />
      </ContentBrand>
 
     </HomeContainer>
