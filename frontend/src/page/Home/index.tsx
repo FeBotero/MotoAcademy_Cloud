@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ContentBrand, ContentLogin, HomeContainer } from "./style";
 import { apiService } from "../../API/api";
 import { FormEvent, useState } from "react";
-import logo from "../../../public/logo.svg"
+import logo from "../../../public/logo.png"
 
 export function Home(){
   const navigate = useNavigate()

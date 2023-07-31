@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ContainerHeader } from "./style";
+import logo from "../assets/logoIcon.png"
 
 export function Header(){
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ export function Header(){
   return(
     <ContainerHeader>
       <div>
-        <img src="/src/assets/logo.png" alt="" />
+        <img src={logo} alt="Logo Wifi Disconnected" />
       </div>
       <div>
         <button onClick={logout}>Logout</button>
