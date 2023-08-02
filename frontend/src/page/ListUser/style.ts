@@ -8,10 +8,7 @@ gap: 1.5rem;
 
 
 table{
-  text-align: center;
-  
-
- 
+  text-align: center; 
 }
 thead{
   background: gray;
@@ -20,6 +17,7 @@ thead{
 
 tr,td,th{
     padding: 1rem;
+    min-width: 8rem;
     border: 1px solid;
     border-collapse: collapse;
 }
@@ -27,5 +25,10 @@ tr,td,th{
 
 button{
   cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+button ~ button{
+  margin-left: 0.5rem;
 }
 `
