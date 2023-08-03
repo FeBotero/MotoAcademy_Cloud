@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { ListContainter } from "./style";
 import { apiService } from "../../API/api";
 import { IClient } from "../../types/Types";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function ListUser() {
   const [clientList, setClientList] = useState<IClient[]>([]);
@@ -37,9 +39,13 @@ export function ListUser() {
       pass: '123456'
     }
     apiService.client.createURL(payload).then(() => {
+      toast.success("Usuário adicionado com sucesso");
       refresh(); // Call refresh after updating the status to get the updated list
       setEmail('')
-    });
+    }).catch(error=>{
+      toast.error(error.response.data.message);
+      
+    })
   }
   async function deleteClient(id:string|undefined){
     if(id){
@@ -95,7 +101,7 @@ export function ListUser() {
 
 
 
-
+      <ToastContainer />
     </ListContainter>
 
 

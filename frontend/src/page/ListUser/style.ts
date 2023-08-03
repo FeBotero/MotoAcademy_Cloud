@@ -37,6 +37,10 @@ input {
   margin-right: 30px;
   padding: 5px 15px;
   width: 300px;
+  background: #C0C0C0;
+}
+input:focus{
+  background: white;
 }
 
 `
