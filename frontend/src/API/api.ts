@@ -42,7 +42,7 @@ export const apiService ={
   },
   client:{
     readAllURL:function(){
-      return api.get<IClient>("client")
+      return api.get<IClient>("/client")
   },
   readByIdURL:function(id:any){
       return api.get<IClient>("/"+id)
@@ -51,7 +51,7 @@ export const apiService ={
       return api.get<IClient>("/update/"+id)
   },
   createURL:function(body:IClient){
-      return api.post<IClient>("/",body)
+      return api.post<IClient>("/client",body)
   },
   
   updateURL:function(id:any,body:IClient){

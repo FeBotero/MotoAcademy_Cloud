@@ -5,8 +5,8 @@ import { apiService } from "../../API/api";
 import { IClient } from "../../types/Types";
 
 export function ListUser() {
-  const [clientList, setClientList] = useState<IClient[]>([])
-  
+  const [clientList, setClientList] = useState<IClient[]>([]);
+  const [email, setEmail] = useState('');
    useEffect(() => {
     refresh(); // Fetch and set the client list on component mount
   }, []);
@@ -29,13 +29,34 @@ export function ListUser() {
     });
   }
 
+  const cadastrar = (event: React.FormEvent<HTMLElement>) => {
+    event.preventDefault();
+    const payload = {
+      email: email,
+      isActive: false,
+      pass: '123456'
+    }
+    apiService.client.createURL(payload).then(() => {
+      refresh(); // Call refresh after updating the status to get the updated list
+    });
+  }
+
 
 
   return (
     <ListContainter>
       <div>
         <h1>Lista de Usuários Cadastrados</h1>
-        <button>Novos Clientes</button>
+        <form onSubmit={cadastrar}>
+            <input 
+              type="email" 
+              placeholder="E-mail" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button type="submit">Cadastrar</button>
+        </form>
+        
       </div>
       <table>
         <thead>
