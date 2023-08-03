@@ -31,4 +31,12 @@ button{
 button ~ button{
   margin-left: 0.5rem;
 }
+
+input {
+  margin-bottom: 30px;
+  margin-right: 30px;
+  padding: 5px 15px;
+  width: 300px;
+}
+
 `
