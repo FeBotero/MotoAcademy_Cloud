@@ -58,7 +58,7 @@ export const apiService ={
       return api.put<any>("/client/"+id,body)
   },
   deleteURL:function(id:any){
-      return api.delete<any>("/"+id)
+      return api.delete<any>("/client/"+id)
   },
   
   },

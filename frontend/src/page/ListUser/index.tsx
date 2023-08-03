@@ -38,7 +38,15 @@ export function ListUser() {
     }
     apiService.client.createURL(payload).then(() => {
       refresh(); // Call refresh after updating the status to get the updated list
+      setEmail('')
     });
+  }
+  async function deleteClient(id:string|undefined){
+    if(id){
+      await apiService.client.deleteURL(id).then(()=>{
+        refresh();
+      })
+    }
   }
 
 
@@ -77,6 +85,7 @@ export function ListUser() {
                 <td>
                   <button onClick={() => active(client._id, false)}>Ativar</button>
                   <button onClick={() => active(client._id, true)}>Desativar</button>
+                  <button onClick={()=>deleteClient(client._id)}>Excluir</button>
                 </td>
               </tr>
             ))
